@@ -1,0 +1,27 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Contacts API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description: >
+    A RESTful API for managing contacts with authentication and image upload support.
+tags:
+  - name: Contacts
+    description: Contacts management endpoints
+  - name: Auth
+    description: Authentication endpoints
+servers:
+  - url: http://localhost:3000
+  - url: https://nodejs-hw-mongodb-vg6u.onrender.com
+paths:
+  /contacts:
+    $ref: ./swagger/paths/contacts/index.yaml
+  /contacts/{contactId}:
+    $ref: ./swagger/paths/contacts/{id}/index.yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
