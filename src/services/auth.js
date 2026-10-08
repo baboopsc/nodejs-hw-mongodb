@@ -68,7 +68,7 @@ export const sendResetEmail = async (email) => {
     const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '5m' });
     const resetLink = `${process.env.APP_DOMAIN}/reset-password?token=${token}`;
 
-    try {
+   try {
         await sendMail({
             to: email,
             subject: 'Password Reset',
@@ -76,7 +76,8 @@ export const sendResetEmail = async (email) => {
                    <a href="${resetLink}">${resetLink}</a>
                    <p>This link will expire in 5 minutes.</p>`,
         });
-    } catch {
+    } catch (error) { // <-- EKSIK OLAN PARAMETRE BU
+        console.error("ALLAH BELASINI VERSIN ISTE GERCEK HATA:", error);
         throw createHttpError(500, 'Failed to send the email, please try again later.');
     }
 };
